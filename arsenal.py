@@ -1,9 +1,15 @@
+"""
+Author: Zakarie Farah
+Purpose: Custom alien invasion game
+Date: July 17, 2025 
+"""
+
 import pygame
 from bullet import Bullet
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from alien_invasion import AlienInvasion
+    from Lab11_zfarah10_2 import AlienInvasion
 
 class Arsenal:
     def __init__(self, game: 'AlienInvasion') -> None:

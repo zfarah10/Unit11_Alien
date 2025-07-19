@@ -1,8 +1,14 @@
+"""
+Author: Zakarie Farah
+Purpose: Custom alien invasion game
+Date: July 17, 2025 
+"""
+
 import pygame
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from alien_invasion import AlienInvasion
+    from Lab11_zfarah10_2 import AlienInvasion
     from arsenal import Arsenal
 
 
