@@ -8,7 +8,7 @@ import pygame
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from Lab11_zfarah10_2 import AlienInvasion
+    from alien_invasion import AlienInvasion
     from arsenal import Arsenal
 
 
