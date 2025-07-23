@@ -9,9 +9,9 @@ class Alien(Sprite):
     def __init__(self, game: 'AlienInvasion', x: float, y: float) -> None:
         super().__init__()
         self.screen = game.screen
-        self.settings = game.settings
         self.boundaries = self.screen.get_rect()
-
+        self.settings = game.settings
+        
         self.image = pygame.image.load(self.settings.alien_file)
         self.image = pygame.transform.scale(
             self.image,
@@ -25,14 +25,10 @@ class Alien(Sprite):
         self.x = float(self.rect.x)
         self.y = float(self.rect.y)
 
-    def update(self) -> None:
+    def update(self, fleet_direction: int) -> None:
         temp_speed = self.settings.fleet_speed
-
-        if self.check_edges():
-            self.settings.fleet_direction *= -1
-            self.y += self.settings.fleet_drop_speed
-
-        self.x += temp_speed * self.settings.fleet_direction
+        
+        self.x += temp_speed * fleet_direction
         self.rect.x = self.x
         self.rect.y = self.y
 
