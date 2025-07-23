@@ -12,28 +12,32 @@ class AlienFleet:
         self.fleet = pygame.sprite.Group()
         self.fleet_direction = self.settings.fleet_direction
         self.fleet_drop_speed = self.settings.fleet_drop_speed
-        self.create_fleet()
+        self.create_custom_fleet()
 
     
-    def create_fleet(self) -> None:
+    def create_custom_fleet(self):
         alien_w = self.settings.alien_w
         alien_h = self.settings.alien_h
         screen_w = self.settings.screen_w
         screen_h = self.settings.screen_h
 
-        fleet_w, fleet_h = self.calculate_fleet_size(alien_w, screen_w, alien_h, screen_h)
-        x_offset, y_offset = self.calculate_offsets(alien_w, alien_h, screen_w, fleet_w, fleet_h)
-        
-        self._create_rectangle_fleet(alien_w, alien_h, fleet_w, fleet_h, x_offset, y_offset)
+        center_x = screen_w // 2
+        center_y = screen_h // 4
 
-    def _create_rectangle_fleet(self, alien_w, alien_h, fleet_w, fleet_h, x_offset, y_offset):
-        for row in range(fleet_h):
-            for col in range(fleet_w):
-                current_x = alien_w * col + x_offset
-                current_y = alien_h * row + y_offset
-                if col % 2 == 0 or row % 2 == 0:
-                    continue
-                self._create_alien(current_x, current_y)
+        spacing = 50
+        layers = 5
+
+        for i in range(layers):
+            # Spiral layer going right
+            x = center_x + i * spacing
+            y = center_y + (i % 2) * spacing
+            self._create_alien(x, y)
+
+            # Spiral layer going left
+            x = center_x - i * spacing
+            y = center_y + ((i + 1) % 2) * spacing
+            self._create_alien(x, y)
+
 
     def calculate_offsets(self, alien_w, alien_h, screen_w, fleet_w, fleet_h):
         half_screen = self.settings.screen_h//2
