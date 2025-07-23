@@ -36,3 +36,10 @@ class Arsenal:
             self.arsenal.add(new_bullet)
             return True
         return False
+    
+    def update(self):
+        self.arsenal.update()
+
+        for bullet in self.arsenal.copy():
+            if bullet.rect.bottom <= 0:
+                self.arsenal.remove(bullet)
