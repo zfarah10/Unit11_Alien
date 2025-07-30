@@ -39,9 +39,9 @@ class Settings:
         self.alien_file = Path.cwd() / 'Assets' / 'images' / 'enemyBlue3.png'
         self.alien_w = 40
         self.alien_h = 40
-        self.fleet_speed = 2
+        self.fleet_speed = 5
         self.fleet_direction = 1  # 1 = right, -1 = left
-        self.fleet_drop_speed = 40
+        self.fleet_drop_speed = 45
 
         self.button_w = 200
         self.button_h = 50

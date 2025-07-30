@@ -12,6 +12,7 @@ from arsenal import Arsenal
 from alien_fleet import AlienFleet
 from time import sleep
 from game_stats import GameStats
+from button import Button
 
 class AlienInvasion:
     def __init__(self):
@@ -34,7 +35,8 @@ class AlienInvasion:
         self.alien_fleet.create_custom_fleet()
 
         self.running = True
-        self.game_active = True
+        self.game_active = False
+        self.play_button = Button(self, 'Play')
         self.clock = pygame.time.Clock()
 
     def run_game(self):
@@ -69,21 +71,42 @@ class AlienInvasion:
         self.alien_fleet.fleet.empty()
         self.alien_fleet.create_custom_fleet()
 
+    def restart_game(self):
+        # setting up dynamic Settings
+        # reset Game stats
+        # update HUD scores
+        self._reset_level()
+        self.ship._center_ship()
+        self.game_active = True
+        pygame.mouse.set_visible(False)
+
     def _update_screen(self):
         self.screen.blit(self.bg, (0, 0))
         self.ship.arsenal.draw()
         self.ship.draw()
         self.alien_fleet.draw()
+
+        if not self.game_active:
+            self.play_button.draw()
+            pygame.mouse.set_visible(True)
+
         pygame.display.flip()
 
     def _check_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self._quit()
-            elif event.type == pygame.KEYDOWN:
+            elif event.type == pygame.KEYDOWN and self.game_active == True:
                 self._check_keydown_events(event)
             elif event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                self._check_button_clicked()
+
+    def _check_button_clicked(self):
+        mouse_pos = pygame.mouse.get_pos()
+        if self.play_button.check_clicked(mouse_pos):
+            self.restart_game()
 
     def _check_keydown_events(self, event):
         if event.key == pygame.K_RIGHT:
