@@ -12,12 +12,12 @@ class HUD:
         self.screen = game.screen
         self.boundaries = self.screen.get_rect()
         self.game_stats = game.game_stats
-        self.font = pygame.font.Font(self.settings.font_file, 
-            self.settings.HUD_font_size)
-        self.padding = 20
+        self.font = pygame.font.Font(self.settings.font_file, 28)  # Increased size
+        self.padding = 30  # Increased padding
         self.update_scores()
         self._setup_life_image()
         self.update_level()
+
 
     def _setup_life_image(self) -> None:
         self.life_image = pygame.image.load(self.settings.ship_file)
