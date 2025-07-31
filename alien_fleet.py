@@ -21,22 +21,20 @@ class AlienFleet:
         screen_w = self.settings.screen_w
         screen_h = self.settings.screen_h
 
-        center_x = screen_w // 2
-        center_y = screen_h // 4
+        rows = 5
+        cols = 15
+        spacing_x = alien_w + 20
+        spacing_y = alien_h + 20
 
-        spacing = 50
-        layers = 5
+        start_x = (screen_w - (cols * spacing_x)) // 2
+        start_y = screen_h // 8
 
-        for i in range(layers):
-            # Spiral layer going right
-            x = center_x + i * spacing
-            y = center_y + (i % 2) * spacing
-            self._create_alien(x, y)
+        for row in range(rows):
+            for col in range(cols):
+                x = start_x + col * spacing_x
+                y = start_y + row * spacing_y
+                self._create_alien(x, y)
 
-            # Spiral layer going left
-            x = center_x - i * spacing
-            y = center_y + ((i + 1) % 2) * spacing
-            self._create_alien(x, y)
 
 
     def calculate_offsets(self, alien_w, alien_h, screen_w, fleet_w, fleet_h):

@@ -12,8 +12,8 @@ class HUD:
         self.screen = game.screen
         self.boundaries = self.screen.get_rect()
         self.game_stats = game.game_stats
-        self.font = pygame.font.Font(self.settings.font_file, 28)  # Increased size
-        self.padding = 30  # Increased padding
+        self.font = pygame.font.Font(self.settings.font_file, 28)
+        self.padding = 30
         self.update_scores()
         self._setup_life_image()
         self.update_level()
@@ -60,8 +60,9 @@ class HUD:
         self.level_image = self.font.render(level_str, True,
             self.settings.text_color, None)
         self.level_rect = self.level_image.get_rect()
-        self.level_rect.right = self.boundaries.right - self.padding
+        self.level_rect.left = self.boundaries.left + self.padding
         self.level_rect.top = self.life_rect.bottom + self.padding
+
 
     def _draw_lives(self) -> None:
         current_x = self.padding

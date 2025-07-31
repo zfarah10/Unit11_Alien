@@ -37,30 +37,32 @@ class Settings:
         self.alien_h = 40
         self.fleet_direction = 1  # 1 = right, -1 = left
 
+        # Button settings
         self.button_w = 200
         self.button_h = 50
         self.button_color = (0,135,50)
         self.button_image = Path.cwd() / 'Assets' / 'images' / 'PlayButton.png'
 
+        # Text and font
         self.text_color = (255,255,255)
         self.button_font_size = 48
         self.HUD_font_size = 20
-        self.font_file = Path.cwd() / 'Assets' / 'Fonts' / 'Silkscreen' / 'BitcountPropDouble_Roman-Regular.ttf' 
+        self.font_file = Path.cwd() / 'Assets' / 'fonts' / 'Silkscreen' / 'Roman-Regular.ttf'
 
     def initialize_dynamic_settings(self) -> None:
-            self.ship_speed = 5
-            self.starting_ship_count = 3
+        self.ship_speed = 5
+        self.starting_ship_count = 3
 
-            self.bullet_w = 10
-            self.bullet_h = 50
-            self.bullet_speed = 7
-            self.bullet_amount = 5
+        self.bullet_w = 10
+        self.bullet_h = 50
+        self.bullet_speed = 7
+        self.bullet_amount = 5
 
-            self.fleet_speed = 5
-            self.fleet_drop_speed = 40
-            self.alien_points = 50
+        self.fleet_speed = 5
+        self.fleet_drop_speed = 40
+        self.alien_points = 50
 
     def increase_difficulty(self) -> None:
-         self.ship_speed *= self.difficulty_scale
-         self.bullet_speed *= self.difficulty_scale
-         self.fleet_speed *= self.difficulty_scale
+        self.ship_speed *= self.difficulty_scale
+        self.bullet_speed *= self.difficulty_scale
+        self.fleet_speed *= self.difficulty_scale
