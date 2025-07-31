@@ -24,7 +24,12 @@ class Button:
         self.msg_image_rect.center = self.rect.center
 
     def draw(self) -> None:
-        self.screen.fill(self.settings.button_color, self.rect)
+        button_img = pygame.image.load(self.settings.button_image)
+        button_img = pygame.transform.scale(button_img, (self.settings.button_w, self.settings.button_h))
+        button_rect = button_img.get_rect()
+        button_rect.center = self.rect.center
+
+        self.screen.blit(button_img, button_rect)
         self.screen.blit(self.msg_image, self.msg_image_rect)
 
     def check_clicked(self, mouse_pos) -> bool:
